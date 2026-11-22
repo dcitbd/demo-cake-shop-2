@@ -1,8 +1,10 @@
-const CACHE_NAME = 'cake-shop-bd-v1.0';
+const CACHE_NAME = 'cake-shop-bd-v1.1';
 const PRECACHE_URLS = [
   './assets/css/style.css',
+  './assets/css/storefront-theme.css',
   './assets/js/app.js',
-  './assets/images/logo.svg',
+  './assets/js/storefront-fx.js',
+  './assets/images/logo.png',
   './assets/images/icon-192.png'
 ];
 

@@ -30,11 +30,11 @@ $unreadNotif = (int)db()->query("SELECT COUNT(*) FROM notifications WHERE is_rea
   <meta name="description" content="<?= e(setting('tagline')) ?>">
   <meta name="theme-color" content="#3b1a0d">
   <link rel="manifest" href="<?= e(base_url('manifest.json')) ?>">
+  <link rel="icon" href="<?= e(base_url('favicon.ico')) ?>" sizes="any">
   <link rel="icon" type="image/png" href="<?= e(base_url('assets/images/icon-192.png')) ?>">
-  <link rel="preconnect" href="https://fonts.maateen.me" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
   <link href="<?= e(base_url('assets/css/style.css')) ?>" rel="stylesheet">
