@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Cake Shop BD — Sweet Moments... Always Fresh</title>
+  <meta name="description" content="Cake Shop BD — সকল প্রকার প্রিমিয়াম বার্থডে, চকলেট, রেড ভেলভেট, বেন্টো ও কাস্টম কেকের বিশ্বস্ত অনলাইন বেকারি।">
+  <meta name="theme-color" content="#3b1a0d">
+  <link rel="icon" href="./favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="./assets/images/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="./assets/css/style.css" rel="stylesheet">
+  <link href="./assets/css/storefront-theme.css" rel="stylesheet">
+</head>
+<body class="csbd-storefront">
+
+<!-- Top Scroll Progress Ribbon -->
+<div id="csbdScrollProgress" aria-hidden="true"></div>
+
+<!-- Dual-Orbit Patisserie Logo Preloader -->
+<div id="digitalLoader">
+  <div class="csbd-loader-stage">
+    <div class="csbd-loader-orbit-outer"></div>
+    <div class="csbd-loader-orbit-inner"></div>
+    <img src="./assets/images/logo.png" alt="Cake Shop BD" class="csbd-loader-logo-img">
+  </div>
+  <div class="csbd-loader-bar-wrap"><div class="csbd-loader-bar-fill"></div></div>
+  <div class="loader-percent">Cake Shop BD • <span id="loaderPercent">50%</span></div>
+</div>
+
+<!-- Living Patisserie Aurora & Golden Sparkle Background -->
+<div class="csbd-bg-stage" id="csbdBgStage" aria-hidden="true">
+  <div class="csbd-bg-grid"></div>
+  <div class="csbd-aurora-orb csbd-aurora-1"></div>
+  <div class="csbd-aurora-orb csbd-aurora-2"></div>
+  <div class="csbd-aurora-orb csbd-aurora-3"></div>
+</div>
+
+<!-- Espresso-Gold Top Contact & Announcement Ribbon -->
+<div class="top-notice-bar">
+  <div class="container">
+    <div class="row align-items-center g-1">
+      <div class="col-lg-3 d-none d-lg-flex align-items-center gap-3">
+        <a href="tel:+8801581703822"><i class="fa-solid fa-phone-volume me-1 text-warning"></i>+880 1581-703822</a>
+        <a href="mailto:jainal.dcitbd@gmail.com"><i class="fa-solid fa-envelope me-1 text-warning"></i>ইমেইল</a>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="notice-marquee-wrap"><div class="notice-marquee" id="ghNoticeText">🎂 Cake Shop BD-তে যেকোনো কেক অর্ডারে পাচ্ছেন ৩৫% পর্যন্ত ছাড়! সেইম-ডে এক্সপ্রেস ডেলিভারি চালু আছে | হটলাইন: 01581-703822 | কাস্টম ফটো ও বার্থডে কেকের জন্য হোয়াটসঅ্যাপে অর্ডার করুন।</div></div>
+      </div>
+      <div class="col-lg-3 d-none d-lg-flex justify-content-end align-items-center gap-3">
+        <a href="#catalogSection"><i class="fa-solid fa-cake-candles me-1 text-warning"></i>সকল কেক</a>
+        <a href="#contactFooter"><i class="fa-solid fa-headset me-1 text-warning"></i>যোগাযোগ</a>
+        <button type="button" class="btn btn-sm btn-outline-light py-0 px-2 rounded-pill" onclick="toggleTheme()" title="থিম পরিবর্তন"><i class="fa-solid fa-circle-half-stroke"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Glassmorphic Patisserie Navbar -->
+<header class="cake-navbar">
+  <div class="container">
+    <div class="nav-top-row d-flex align-items-center justify-content-between gap-2 flex-wrap">
+      <a href="#top" class="csbd-brand-lockup" onclick="resetFilters()">
+        <span class="csbd-brand-badge">
+          <img src="./assets/images/logo.png" alt="Cake Shop BD">
+        </span>
+        <span class="csbd-brand-text">
+          <span class="csbd-brand-name">Cake <span>Shop BD</span></span>
+          <span class="csbd-brand-sub">Sweet Moments • Always Fresh</span>
+        </span>
+      </a>
+
+      <form onsubmit="event.preventDefault(); applyCatalogFilter();" class="nav-search-box order-3 order-lg-2 mt-2 mt-lg-0 w-100">
+        <input type="text" id="liveSearchInput" class="form-control" placeholder="পছন্দের কেক খুঁজুন... (চকলেট, বার্থডে, বেন্টো)" autocomplete="off">
+        <button type="submit" class="nav-search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <div class="live-search-dropdown" id="liveSearchDropdown"></div>
+      </form>
+
+      <div class="d-flex align-items-center gap-1 gap-sm-2 order-2 order-lg-3 nav-actions-cluster">
+        <button type="button" class="nav-icon-btn" onclick="openFavModal()" title="ফেভরিট">
+          <i class="fa-solid fa-heart"></i>
+          <span class="nav-badge-count js-fav-count">0</span>
+        </button>
+        <button type="button" class="nav-icon-btn" onclick="openCartModal()" title="কার্ট">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="nav-badge-count js-cart-count">0</span>
+        </button>
+        <a href="https://wa.me/8801581703822" target="_blank" rel="noopener" class="btn btn-sm btn-danger rounded-pill px-3 fw-bold nav-user-btn">
+          <i class="fa-brands fa-whatsapp me-1"></i>অর্ডার
+        </a>
+      </div>
+    </div>
+
+    <nav class="nav-menu-bar" aria-label="Main navigation">
+      <div class="nav-links-group">
+        <a href="#top" class="nav-pill-link active" onclick="resetFilters()">
+          <i class="fa-solid fa-house text-danger"></i>হোম
+        </a>
+        <a href="#catalogSection" class="nav-pill-link">
+          <i class="fa-solid fa-cake-candles text-danger"></i>সকল কেক
+        </a>
+
+        <div class="cat-dropdown-wrap" id="navCatWrap">
+          <button type="button" id="navCatBtn" class="nav-pill-link" onclick="toggleCatMenu(event)" aria-expanded="false">
+            <i class="fa-solid fa-layer-group text-danger"></i>ক্যাটাগরি <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i>
+          </button>
+          <div class="cat-dropdown-panel" id="navCatPanel"></div>
+        </div>
+
+        <a href="#brandsSection" class="nav-pill-link">
+          <i class="fa-solid fa-crown text-danger"></i>ব্র্যান্ড
+        </a>
+        <a href="#contactFooter" class="nav-pill-link">
+          <i class="fa-solid fa-headset text-danger"></i>যোগাযোগ
+        </a>
+      </div>
+      <div class="d-none d-lg-flex align-items-center gap-2">
+        <a href="tel:+8801581703822" class="btn btn-sm btn-warning rounded-pill fw-bold px-3">
+          <i class="fa-solid fa-phone me-1"></i>01581-703822
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="main-content-wrapper" id="top">
+  <div class="container py-4">
+    <!-- 1. Cinematic Patisserie Hero Showcase -->
+    <section class="mb-5">
+      <div id="heroBannerCarousel" class="carousel slide carousel-fade hero-banner-card" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-indicators" id="heroIndicators"></div>
+        <div class="carousel-inner" id="heroSlides"></div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroBannerCarousel" data-bs-slide="prev" aria-label="Previous"><span class="carousel-control-prev-icon"></span></button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroBannerCarousel" data-bs-slide="next" aria-label="Next"><span class="carousel-control-next-icon"></span></button>
+      </div>
+    </section>
+
+    <!-- 2. Artisanal Patisserie Benefits Bento -->
+    <section class="mb-5">
+      <div class="row g-3">
+        <div class="col-6 col-lg-3">
+          <div class="benefit-3d-card">
+            <div class="benefit-icon-box"><i class="fa-solid fa-truck-fast"></i></div>
+            <h6 class="fw-bold mb-1">দ্রুত এক্সপ্রেস ডেলিভারি</h6>
+            <p class="small text-muted mb-0">২-৪ ঘন্টায় সেইম-ডে কুল-বক্স ডেলিভারি আপনার দোরগোড়ায়।</p>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="benefit-3d-card">
+            <div class="benefit-icon-box" style="background:linear-gradient(135deg,#15803d,#22c55e);"><i class="fa-solid fa-award"></i></div>
+            <h6 class="fw-bold mb-1">১০০% ফ্রেশ ও হালাল মান</h6>
+            <p class="small text-muted mb-0">অর্ডার পাওয়ার পর প্রিমিয়াম বেলজিয়ান উপাদানে ফ্রেশ বেক করা হয়।</p>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="benefit-3d-card">
+            <div class="benefit-icon-box" style="background:linear-gradient(135deg,#b45309,#f2b749);"><i class="fa-solid fa-tags"></i></div>
+            <h6 class="fw-bold mb-1">৩৫% পর্যন্ত ডিসকাউন্ট</h6>
+            <p class="small text-muted mb-0">প্রতিটি কেকে স্পেশাল ছাড়, কুপন অফার ও ফ্রি ক্যান্ডেল-নাইফ।</p>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="benefit-3d-card">
+            <div class="benefit-icon-box" style="background:linear-gradient(135deg,#3b1a0d,#7c3a1f);"><i class="fa-solid fa-headset"></i></div>
+            <h6 class="fw-bold mb-1">২৪/৭ কাস্টম সাপোর্ট</h6>
+            <p class="small text-muted mb-0">ফটো কেক ও কাস্টম ডিজাইনের জন্য কল বা হোয়াটসঅ্যাপ সাপোর্ট।</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Signature Brands Medallion Grid -->
+    <section class="mb-5" id="brandsSection">
+      <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+        <div class="csbd-section-head">
+          <h4 class="fw-bold mb-0"><i class="fa-solid fa-crown text-warning me-2"></i>আমাদের প্রিমিয়াম কেক ব্র্যান্ডসমূহ</h4>
+          <small class="text-muted">বিশ্বস্ত আর্টিসান বেকারি ও শেফ ব্র্যান্ড</small>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-danger rounded-pill fw-bold px-3" onclick="resetFilters()">সব দেখুন &rarr;</button>
+      </div>
+      <div class="row g-3" id="brandsGrid"></div>
+    </section>
+
+    <!-- 4. Category-Wise Sliders -->
+    <div id="categorySlidersWrap"></div>
+
+    <!-- 5. Complete Filterable All-Cakes Catalog -->
+    <section class="mb-5" id="catalogSection">
+      <div class="digital-filter-bar">
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+          <span class="digital-counter-pill"><i class="fa-solid fa-cake-candles"></i> <span id="catalogCount">০</span> টি কেক</span>
+          <div id="activeFilterPills" class="d-flex flex-wrap gap-1"></div>
+        </div>
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+          <select id="catFilterSelect" class="form-select form-select-sm rounded-pill" style="width:auto;" onchange="applyCatalogFilter()">
+            <option value="">সকল ক্যাটাগরি</option>
+          </select>
+          <select id="sortFilterSelect" class="form-select form-select-sm rounded-pill" style="width:auto;" onchange="applyCatalogFilter()">
+            <option value="latest">নতুন কেক</option>
+            <option value="price_asc">দাম: কম থেকে বেশি</option>
+            <option value="price_desc">দাম: বেশি থেকে কম</option>
+            <option value="discount">সর্বোচ্চ ছাড়</option>
+          </select>
+        </div>
+      </div>
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3" id="catalogGrid"></div>
+    </section>
+
+    <!-- 6. Direct Order CTA Banner -->
+    <section class="my-5">
+      <div class="p-4 p-md-5 rounded-4 shadow-lg soft-brand-banner">
+        <div class="row align-items-center g-4 position-relative" style="z-index:2;">
+          <div class="col-lg-8">
+            <span class="badge bg-warning text-dark rounded-pill px-3 py-2 fw-bold mb-2"><i class="fa-solid fa-bolt me-1"></i>EXPRESS SAME-DAY ORDER</span>
+            <h2 class="fw-bold mb-2">Cake Shop BD-তে সরাসরি অর্ডার করুন!</h2>
+            <p class="mb-0 opacity-90">কাস্টম বার্থডে কেক, ফটো কেক, ওয়েডিং কেক বা জরুরি হোম ডেলিভারির জন্য সরাসরি কল বা হোয়াটসঅ্যাপে যোগাযোগ করুন।</p>
+          </div>
+          <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
+            <a href="https://wa.me/8801581703822" target="_blank" rel="noopener" class="btn btn-warning btn-lg rounded-pill fw-bold px-4">
+              <i class="fa-brands fa-whatsapp me-2"></i>WhatsApp অর্ডার
+            </a>
+            <a href="tel:+8801581703822" class="btn btn-outline-light btn-lg rounded-pill fw-bold px-4">
+              <i class="fa-solid fa-phone me-1"></i>কল করুন
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- Decorative Chocolate-Drip Wave Divider -->
+<div class="csbd-footer-wave" aria-hidden="true">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none">
+    <path fill="#2a1208" d="M0,24 C160,68 320,0 480,34 C640,68 800,4 960,36 C1120,68 1280,10 1440,34 L1440,70 L0,70 Z"></path>
+  </svg>
+</div>
+
+<footer class="cake-footer" id="contactFooter">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <img src="./assets/images/logo.png" alt="Cake Shop BD" width="56" height="56" class="rounded-circle border border-2 border-warning shadow-sm bg-white p-1">
+          <div>
+            <h5 class="mb-0 fw-bold text-white">Cake Shop BD</h5>
+            <small class="text-warning">কেক শপ বিডি • Sweet Moments</small>
+          </div>
+        </div>
+        <p class="small opacity-75">Sweet Moments... Always Fresh — প্রিমিয়াম ও কাস্টম কেকের বিশ্বস্ত অনলাইন বেকারি।</p>
+        <div class="small mb-2"><i class="fa-solid fa-location-dot text-warning me-2"></i>চৌধুরী প্লাজা, নিচতলা, রুম নং ৩, পদুয়ার বাজার বিশ্বরোড, কুমিল্লা-৩৫০০, বাংলাদেশ</div>
+        <div class="small mb-2"><i class="fa-solid fa-phone text-warning me-2"></i>+880 1581-703822</div>
+        <div class="small"><i class="fa-solid fa-envelope text-warning me-2"></i>jainal.dcitbd@gmail.com</div>
+      </div>
+
+      <div class="col-6 col-lg-4">
+        <h6 class="fw-bold text-warning mb-3">জনপ্রিয় ক্যাটাগরি</h6>
+        <ul class="list-unstyled small d-flex flex-column gap-2" id="footerCatLinks"></ul>
+      </div>
+
+      <div class="col-6 col-lg-4">
+        <div class="p-3 rounded-4" style="background:rgba(255,249,242,0.06);border:1px solid rgba(242,183,73,0.22);">
+          <h6 class="fw-bold text-warning mb-2"><i class="fa-solid fa-headset me-1"></i>অর্ডার ও সাপোর্ট</h6>
+          <p class="small opacity-75 mb-3">প্রতিদিন সকাল ৯:০০ টা — রাত ১১:০০ টা পর্যন্ত সরাসরি অর্ডার নেওয়া হয়।</p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <a href="https://wa.me/8801581703822" target="_blank" rel="noopener" class="btn btn-warning btn-sm fw-bold rounded-pill px-3"><i class="fa-brands fa-whatsapp me-1"></i>WhatsApp</a>
+            <a href="mailto:jainal.dcitbd@gmail.com" class="btn btn-outline-light btn-sm fw-bold rounded-pill px-3"><i class="fa-solid fa-envelope me-1"></i>ইমেইল</a>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <a class="csbd-footer-social-btn" href="https://facebook.com/cakeshopbd" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a class="csbd-footer-social-btn" href="https://instagram.com/cakeshopbd" target="_blank" rel="noopener" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a class="csbd-footer-social-btn" href="https://youtube.com/@cakeshopbd" target="_blank" rel="noopener" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a class="csbd-footer-social-btn" href="https://tiktok.com/@cakeshopbd" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-top border-light border-opacity-25 mt-4 pt-3 d-flex flex-wrap justify-content-between align-items-center small opacity-75 gap-2">
+      <div>&copy; <span id="ghYear">2026</span> Cake Shop BD — সর্বস্বত্ব সংরক্ষিত।</div>
+      <div>হটলাইন: +880 1581-703822 | jainal.dcitbd@gmail.com</div>
+    </div>
+  </div>
+</footer>
+
+<button type="button" id="csbdBackToTop" aria-label="উপরে যান" title="উপরে যান">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<div class="mobile-bottom-nav">
+  <a href="#top" class="text-center small" onclick="resetFilters()"><i class="fa-solid fa-house d-block fs-5 text-danger"></i>হোম</a>
+  <a href="#catalogSection" class="text-center small"><i class="fa-solid fa-cake-candles d-block fs-5 text-danger"></i>কেক</a>
+  <a href="javascript:void(0)" class="text-center small" onclick="openCartModal()"><i class="fa-solid fa-cart-shopping d-block fs-5 text-danger"></i>কার্ট (<span class="js-cart-count">0</span>)</a>
+  <a href="javascript:void(0)" class="text-center small" onclick="openFavModal()"><i class="fa-solid fa-heart d-block fs-5 text-danger"></i>ফেভরিট</a>
+  <a href="https://wa.me/8801581703822" target="_blank" rel="noopener" class="text-center small"><i class="fa-brands fa-whatsapp d-block fs-5 text-success"></i>অর্ডার</a>
+</div>
+
+<!-- Product Quick-View Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content rounded-4 border-0 overflow-hidden">
+      <div class="modal-body p-0" id="productModalBody"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Cart & Checkout Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content rounded-4 border-0">
+      <div class="modal-header border-0 pb-1">
+        <h5 class="modal-title fw-bold"><i class="fa-solid fa-cart-shopping text-danger me-2"></i>আপনার শপিং কার্ট</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="cartModalBody"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Favorites Modal -->
+<div class="modal fade" id="favModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content rounded-4 border-0">
+      <div class="modal-header border-0 pb-1">
+        <h5 class="modal-title fw-bold"><i class="fa-solid fa-heart text-danger me-2"></i>ফেভরিট কেকসমূহ</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="favModalBody"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./assets/js/storefront-fx.js"></script>
+<script>
+const CSBD = {
+  data: null,
+  cart: JSON.parse(localStorage.getItem('csbd_cart') || '[]'),
+  favs: JSON.parse(localStorage.getItem('csbd_favs') || '[]'),
+  activeBrand: '',
+  activeCat: ''
+};
+
+document.getElementById('ghYear').textContent = new Date().getFullYear();
+
+// Fast Preloader
+(function() {
+  const loader = document.getElementById('digitalLoader');
+  const pctEl = document.getElementById('loaderPercent');
+  if (!loader) return;
+  let pct = 55;
+  const iv = setInterval(() => {
+    pct = Math.min(98, pct + 18);
+    if (pctEl) pctEl.textContent = pct + '%';
+  }, 55);
+  const done = () => {
+    clearInterval(iv);
+    if (pctEl) pctEl.textContent = '100%';
+    loader.classList.add('hidden');
+  };
+  setTimeout(done, 420);
+  window.addEventListener('load', () => setTimeout(done, 180));
+})();
+
+function toggleTheme() {
+  const curr = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', curr);
+  localStorage.setItem('sdc_theme', curr);
+}
+(function() {
+  const saved = localStorage.getItem('sdc_theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+
+function toggleCatMenu(e) {
+  if (e) e.stopPropagation();
+  const panel = document.getElementById('navCatPanel');
+  const btn = document.getElementById('navCatBtn');
+  if (!panel) return;
+  const isOpen = panel.classList.toggle('open');
+  if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+document.addEventListener('click', (e) => {
+  const wrap = document.getElementById('navCatWrap');
+  const panel = document.getElementById('navCatPanel');
+  if (wrap && panel && !wrap.contains(e.target)) {
+    panel.classList.remove('open');
+  }
+});
+
+function showToast(msg, type = 'primary') {
+  let box = document.getElementById('sdcToastBox');
+  if (!box) {
+    box = document.createElement('div');
+    box.id = 'sdcToastBox';
+    box.style.cssText = 'position:fixed;bottom:76px;right:14px;z-index:99999;display:flex;flex-direction:column;gap:8px;max-width:calc(100vw - 28px);';
+    document.body.appendChild(box);
+  }
+  const el = document.createElement('div');
+  const bg = type === 'success' ? '#15803d' : (type === 'danger' ? '#c81d25' : '#3b1a0d');
+  el.style.cssText = `background:${bg};color:#fff;padding:11px 16px;border-radius:14px;font-weight:700;font-size:14px;box-shadow:0 10px 26px rgba(0,0,0,0.22);max-width:340px;`;
+  el.innerHTML = msg;
+  box.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
+
+function esc(s) {
+  return String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+function tk(n) { return '৳' + Math.round(Number(n || 0)).toLocaleString('en-US'); }
+function relImg(p) { return !p ? './assets/images/logo.png' : (p.startsWith('http') ? p : './' + p.replace(/^\/+/, '')); }
+
+function waUrlForProduct(p, variant = '1 পাউন্ড | ক্লাসিক') {
+  const wa = (CSBD.data && CSBD.data.settings.whatsapp) || '8801581703822';
+  const msg = `আসসালামু আলাইকুম! আমি Cake Shop BD থেকে এই কেকটি অর্ডার করতে চাই:\n🎂 প্রোডাক্ট: ${p.name}\n🏷️ SKU: ${p.sku}\n🎨 ভ্যারিয়েন্ট: ${variant}\n💰 মূল্য: ${tk(p.discount_price)}`;
+  return `https://wa.me/${wa}?text=${encodeURIComponent(msg)}`;
+}
+
+function syncCounters() {
+  const cartQty = CSBD.cart.reduce((s, it) => s + (it.qty || 1), 0);
+  document.querySelectorAll('.js-cart-count').forEach(el => el.textContent = cartQty);
+  document.querySelectorAll('.js-fav-count').forEach(el => el.textContent = CSBD.favs.length);
+  localStorage.setItem('csbd_cart', JSON.stringify(CSBD.cart));
+  localStorage.setItem('csbd_favs', JSON.stringify(CSBD.favs));
+}
+
+function addToCart(pid, qty = 1, variant = '1 পাউন্ড | ক্লাসিক') {
+  const p = CSBD.data.products.find(x => x.id === pid);
+  if (!p) return;
+  const ex = CSBD.cart.find(x => x.id === pid && x.variant === variant);
+  if (ex) ex.qty += qty;
+  else CSBD.cart.push({ id: p.id, name: p.name, price: Number(p.discount_price), image: relImg(p.images[0]), variant, qty });
+  syncCounters();
+  showToast('🛒 কেকটি কার্টে যুক্ত হয়েছে!', 'success');
+}
+
+function orderNow(pid) {
+  addToCart(pid, 1);
+  openCartModal();
+}
+
+function toggleFavorite(pid) {
+  const idx = CSBD.favs.indexOf(pid);
+  if (idx >= 0) {
+    CSBD.favs.splice(idx, 1);
+    showToast('ফেভরিট থেকে সরানো হয়েছে', 'primary');
+  } else {
+    CSBD.favs.push(pid);
+    showToast('❤️ ফেভরিটে যুক্ত হয়েছে!', 'success');
+  }
+  syncCounters();
+  document.querySelectorAll(`[data-fav-id="${pid}"]`).forEach(btn => {
+    const active = CSBD.favs.includes(pid);
+    btn.classList.toggle('active', active);
+    const ic = btn.querySelector('i');
+    if (ic) ic.className = (active ? 'fa-solid' : 'fa-regular') + ' fa-heart';
+  });
+}
+
+function cakeCardHTML(p) {
+  const img = relImg(p.images[0]);
+  const isFav = CSBD.favs.includes(p.id);
+  const savings = Math.max(0, Number(p.regular_price) - Number(p.discount_price));
+  return `
+    <div class="cake-card" data-product-id="${p.id}">
+      <div class="cake-card-media">
+        ${p.discount_percent > 0 ? `<span class="badge-discount">-${p.discount_percent}% ছাড়</span>` : ''}
+        <button type="button" class="btn-fav-corner ${isFav ? 'active' : ''}" data-fav-id="${p.id}" onclick="toggleFavorite(${p.id})" title="ফেভরিট">
+          <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+        </button>
+        <a href="javascript:void(0)" class="cake-img-link" onclick="openProductModal(${p.id})">
+          <img src="${esc(img)}" alt="${esc(p.name)}" loading="lazy">
+        </a>
+      </div>
+      <div class="cake-card-body">
+        <div class="cake-meta-row">
+          <span class="cake-brand"><i class="fa-solid fa-crown me-1"></i>${esc(p.brand_name || 'Cake Shop BD')}</span>
+          <span class="cake-rating"><i class="fa-solid fa-star text-warning"></i> ${Number(p.rating || 4.9).toFixed(1)}</span>
+        </div>
+        <h3 class="cake-title"><a href="javascript:void(0)" onclick="openProductModal(${p.id})">${esc(p.name)}</a></h3>
+        <div class="cake-price-row">
+          <span class="price-discount">${tk(p.discount_price)}</span>
+          <span class="price-regular">${tk(p.regular_price)}</span>
+          <span class="price-savings">সাশ্রয় ${tk(savings)}</span>
+        </div>
+        <div class="cake-actions-row">
+          <button type="button" class="btn btn-order-now" onclick="orderNow(${p.id})"><i class="fa-solid fa-bolt me-1"></i>Order Now</button>
+          <button type="button" class="btn btn-add-cart" onclick="addToCart(${p.id})"><i class="fa-solid fa-cart-plus me-1"></i>Cart</button>
+        </div>
+        <a href="${waUrlForProduct(p)}" target="_blank" rel="noopener" class="btn btn-whatsapp-order w-100 mt-2">
+          <i class="fa-brands fa-whatsapp me-1"></i>Order With WhatsApp
+        </a>
+      </div>
+    </div>`;
+}
+
+function slideCategory(id, dir) {
+  const el = document.getElementById(id);
+  if (el) el.scrollBy({ left: dir * 260, behavior: 'smooth' });
+}
+
+function filterByCat(catId) {
+  CSBD.activeCat = String(catId || '');
+  document.getElementById('catFilterSelect').value = CSBD.activeCat;
+  const panel = document.getElementById('navCatPanel');
+  if (panel) panel.classList.remove('open');
+  applyCatalogFilter();
+  document.getElementById('catalogSection').scrollIntoView({ behavior: 'smooth' });
+}
+
+function filterByBrand(brandId) {
+  CSBD.activeBrand = String(brandId || '');
+  applyCatalogFilter();
+  document.getElementById('catalogSection').scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetFilters() {
+  CSBD.activeCat = '';
+  CSBD.activeBrand = '';
+  document.getElementById('liveSearchInput').value = '';
+  document.getElementById('catFilterSelect').value = '';
+  document.getElementById('sortFilterSelect').value = 'latest';
+  applyCatalogFilter();
+}
+
+function applyCatalogFilter() {
+  if (!CSBD.data) return;
+  const q = (document.getElementById('liveSearchInput').value || '').trim().toLowerCase();
+  const catVal = document.getElementById('catFilterSelect').value || CSBD.activeCat;
+  const sortVal = document.getElementById('sortFilterSelect').value;
+
+  let list = CSBD.data.products.filter(p => {
+    const matchQ = !q || (p.name + ' ' + (p.brand_name || '') + ' ' + (p.category_name || '') + ' ' + (p.sku || '')).toLowerCase().includes(q);
+    const matchCat = !catVal || String(p.category_id) === String(catVal) || String(p.category_parent_id) === String(catVal);
+    const matchBrand = !CSBD.activeBrand || String(p.brand_id) === String(CSBD.activeBrand);
+    return matchQ && matchCat && matchBrand;
+  });
+
+  if (sortVal === 'price_asc') list.sort((a, b) => a.discount_price - b.discount_price);
+  else if (sortVal === 'price_desc') list.sort((a, b) => b.discount_price - a.discount_price);
+  else if (sortVal === 'discount') list.sort((a, b) => b.discount_percent - a.discount_percent);
+
+  document.getElementById('catalogCount').textContent = list.length;
+  const grid = document.getElementById('catalogGrid');
+  if (!list.length) {
+    grid.innerHTML = '<div class="col-12 text-center py-5"><p class="text-muted mb-2">কোনো কেক পাওয়া যায়নি।</p><button class="btn btn-danger rounded-pill px-4" onclick="resetFilters()">সব কেক দেখুন</button></div>';
+  } else {
+    grid.innerHTML = list.map(p => `<div class="col">${cakeCardHTML(p)}</div>`).join('');
+  }
+}
+
+function openProductModal(pid) {
+  const p = CSBD.data.products.find(x => x.id === pid);
+  if (!p) return;
+  const body = document.getElementById('productModalBody');
+  body.innerHTML = `
+    <div class="row g-0">
+      <div class="col-md-6 bg-light d-flex align-items-center justify-content-center p-3">
+        <img src="${esc(relImg(p.images[0]))}" alt="${esc(p.name)}" class="img-fluid rounded-4" style="max-height:360px;object-fit:cover;">
+      </div>
+      <div class="col-md-6 p-4 d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <span class="badge bg-warning text-dark rounded-pill px-3">${esc(p.brand_name || 'Cake Shop BD')}</span>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <h4 class="fw-bold mb-2">${esc(p.name)}</h4>
+        <div class="small text-muted mb-2">SKU: ${esc(p.sku)} • রেটিং: ⭐ ${Number(p.rating || 4.9).toFixed(1)}</div>
+        <p class="small text-muted mb-3">${esc(p.short_desc || '১০০% ফ্রেশ ও হালাল উপাদানে অর্ডারের সাথে সাথে বেক করা প্রিমিয়াম কেক।')}</p>
+        <div class="d-flex align-items-baseline gap-2 mb-3">
+          <span class="fs-3 fw-bold text-danger">${tk(p.discount_price)}</span>
+          <span class="text-muted text-decoration-line-through">${tk(p.regular_price)}</span>
+          ${p.discount_percent > 0 ? `<span class="badge bg-success rounded-pill">-${p.discount_percent}% ছাড়</span>` : ''}
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-bold">ওজন / ভ্যারিয়েন্ট</label>
+          <select id="modalVariantSel" class="form-select rounded-3">
+            <option value="1 পাউন্ড | ক্লাসিক">১ পাউন্ড — ক্লাসিক</option>
+            <option value="1.5 পাউন্ড | ক্লাসিক">১.৫ পাউন্ড — ক্লাসিক</option>
+            <option value="2 পাউন্ড | স্পেশাল">২ পাউন্ড — স্পেশাল</option>
+          </select>
+        </div>
+        <div class="d-grid gap-2 mt-auto">
+          <button type="button" class="btn btn-danger rounded-pill fw-bold" onclick="addToCart(${p.id}, 1, document.getElementById('modalVariantSel').value); bootstrap.Modal.getInstance(document.getElementById('productModal')).hide(); openCartModal();">
+            <i class="fa-solid fa-bolt me-1"></i>এখনই অর্ডার করুন
+          </button>
+          <a href="${waUrlForProduct(p)}" target="_blank" rel="noopener" class="btn btn-whatsapp-order rounded-pill fw-bold">
+            <i class="fa-brands fa-whatsapp me-1"></i>WhatsApp-এ অর্ডার করুন
+          </a>
+        </div>
+      </div>
+    </div>`;
+  new bootstrap.Modal(document.getElementById('productModal')).show();
+}
+
+function openCartModal() {
+  const body = document.getElementById('cartModalBody');
+  if (!CSBD.cart.length) {
+    body.innerHTML = '<div class="text-center py-4 text-muted"><i class="fa-solid fa-cart-shopping fs-1 mb-2 d-block opacity-50"></i>আপনার কার্টটি এখন খালি।</div>';
+  } else {
+    const subtotal = CSBD.cart.reduce((s, it) => s + it.price * it.qty, 0);
+    const itemsHtml = CSBD.cart.map((it, idx) => `
+      <div class="d-flex align-items-center gap-3 py-2 border-bottom">
+        <img src="${esc(it.image)}" width="56" height="56" class="rounded-3" style="object-fit:cover;">
+        <div class="flex-grow-1">
+          <div class="fw-bold small">${esc(it.name)}</div>
+          <div class="text-muted" style="font-size:12px;">${esc(it.variant)} • ${tk(it.price)} × ${it.qty}</div>
+        </div>
+        <div class="fw-bold text-danger">${tk(it.price * it.qty)}</div>
+        <button type="button" class="btn btn-sm btn-outline-danger rounded-circle" onclick="CSBD.cart.splice(${idx},1);syncCounters();openCartModal();"><i class="fa-solid fa-trash"></i></button>
+      </div>`).join('');
+
+    const waLines = CSBD.cart.map(it => `• ${it.name} (${it.variant}) x${it.qty} = ${tk(it.price * it.qty)}`).join('\n');
+    const waText = `আসসালামু আলাইকুম! আমি Cake Shop BD থেকে অর্ডার করতে চাই:\n${waLines}\nমোট: ${tk(subtotal)}`;
+    body.innerHTML = `
+      ${itemsHtml}
+      <div class="d-flex justify-content-between align-items-center mt-3 pt-2">
+        <span class="fw-bold fs-5">সর্বমোট:</span>
+        <span class="fw-bold fs-4 text-danger">${tk(subtotal)}</span>
+      </div>
+      <div class="d-grid gap-2 mt-3">
+        <a href="https://wa.me/8801581703822?text=${encodeURIComponent(waText)}" target="_blank" rel="noopener" class="btn btn-whatsapp-order btn-lg rounded-pill fw-bold">
+          <i class="fa-brands fa-whatsapp me-2"></i>WhatsApp-এ অর্ডার কনফার্ম করুন
+        </a>
+      </div>`;
+  }
+  bootstrap.Modal.getOrCreateInstance(document.getElementById('cartModal')).show();
+}
+
+function openFavModal() {
+  const body = document.getElementById('favModalBody');
+  const favProds = CSBD.data ? CSBD.data.products.filter(p => CSBD.favs.includes(p.id)) : [];
+  if (!favProds.length) {
+    body.innerHTML = '<div class="text-center py-4 text-muted"><i class="fa-regular fa-heart fs-1 mb-2 d-block opacity-50"></i>এখনও কোনো ফেভরিট কেক যুক্ত করা হয়নি।</div>';
+  } else {
+    body.innerHTML = `<div class="row row-cols-2 g-3">${favProds.map(p => `<div class="col">${cakeCardHTML(p)}</div>`).join('')}</div>`;
+  }
+  bootstrap.Modal.getOrCreateInstance(document.getElementById('favModal')).show();
+}
+
+// Live Search Dropdown
+(function() {
+  const input = document.getElementById('liveSearchInput');
+  const drop = document.getElementById('liveSearchDropdown');
+  if (!input || !drop) return;
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    applyCatalogFilter();
+    if (q.length < 2 || !CSBD.data) { drop.style.display = 'none'; return; }
+    const hits = CSBD.data.products.filter(p => (p.name + ' ' + (p.brand_name || '')).toLowerCase().includes(q)).slice(0, 6);
+    if (!hits.length) {
+      drop.innerHTML = '<div class="p-3 text-muted small">কোনো কেক পাওয়া যায়নি...</div>';
+    } else {
+      drop.innerHTML = hits.map(it => `
+        <a href="javascript:void(0)" onclick="openProductModal(${it.id}); document.getElementById('liveSearchDropdown').style.display='none';" class="d-flex align-items-center gap-2 p-2 border-bottom text-decoration-none">
+          <img src="${esc(relImg(it.images[0]))}" style="width:44px;height:44px;border-radius:8px;object-fit:cover;">
+          <div class="flex-grow-1 overflow-hidden">
+            <div class="fw-bold small text-truncate">${esc(it.name)}</div>
+            <div class="small text-danger fw-bold">${tk(it.discount_price)} <span class="text-muted text-decoration-line-through fw-normal">${tk(it.regular_price)}</span></div>
+          </div>
+        </a>`).join('');
+    }
+    drop.style.display = 'block';
+  });
+  document.addEventListener('click', (e) => {
+    if (!input.contains(e.target) && !drop.contains(e.target)) drop.style.display = 'none';
+  });
+})();
+
+// Load Store Data JSON
+fetch('./assets/data/store_data.json')
+  .then(r => r.json())
+  .then(data => {
+    CSBD.data = data;
+    syncCounters();
+
+    if (data.settings && data.settings.notice_text) {
+      document.getElementById('ghNoticeText').textContent = data.settings.notice_text;
+    }
+
+    // Hero Slider
+    document.getElementById('heroIndicators').innerHTML = data.banners.map((b, i) =>
+      `<button type="button" data-bs-target="#heroBannerCarousel" data-bs-slide-to="${i}" class="${i===0?'active':''}" aria-label="Slide ${i+1}"></button>`
+    ).join('');
+    document.getElementById('heroSlides').innerHTML = data.banners.map((b, i) => `
+      <div class="carousel-item ${i===0?'active':''}">
+        <img src="${esc(relImg(b.image))}" class="hero-slide-img" alt="${esc(b.title)}">
+        <div class="hero-overlay-caption">
+          <div class="csbd-hero-glass-box">
+            <div class="csbd-live-pill"><span class="csbd-live-dot"></span><span>${esc(b.badge_text || 'FRESHLY BAKED • SAME-DAY DELIVERY')}</span></div>
+            <h1>${esc(b.title)}</h1>
+            ${b.subtitle ? `<p>${esc(b.subtitle)}</p>` : ''}
+            <div class="d-flex gap-2 flex-wrap">
+              <a href="#catalogSection" class="btn btn-warning btn-lg rounded-pill fw-bold px-4 shadow-sm"><i class="fa-solid fa-cake-candles me-2"></i>${esc(b.btn_text || 'অর্ডার করুন')}</a>
+              <a href="https://wa.me/8801581703822" target="_blank" rel="noopener" class="btn btn-outline-light btn-lg rounded-pill fw-bold px-4">WhatsApp অর্ডার <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>`).join('');
+
+    // Categories Dropdown & Select
+    const mainCats = data.categories.filter(c => Number(c.parent_id) === 0);
+    const navPanel = document.getElementById('navCatPanel');
+    const catSelect = document.getElementById('catFilterSelect');
+    const footerCats = document.getElementById('footerCatLinks');
+
+    navPanel.innerHTML = `<a class="cat-drop-item text-danger fw-bold border-bottom mb-1 pb-2" href="javascript:void(0)" onclick="filterByCat('')"><span><i class="fa-solid fa-border-all me-2"></i>সকল ক্যাটাগরি দেখুন</span><i class="fa-solid fa-arrow-right small"></i></a>`
+      + mainCats.map(c => `<a class="cat-drop-item" href="javascript:void(0)" onclick="filterByCat(${c.id})"><span><i class="fa-solid ${esc(c.icon)} me-2 text-danger"></i>${esc(c.name)}</span></a>`).join('');
+
+    mainCats.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c.id;
+      opt.textContent = c.name;
+      catSelect.appendChild(opt);
+    });
+    footerCats.innerHTML = mainCats.slice(0, 6).map(c => `<li><a href="#catalogSection" onclick="filterByCat(${c.id})">${esc(c.name)}</a></li>`).join('');
+
+    // Brands Grid
+    document.getElementById('brandsGrid').innerHTML = data.brands.map(br => `
+      <div class="col-6 col-md-4 col-lg-3">
+        <a href="javascript:void(0)" onclick="filterByBrand(${br.id})" class="brand-pill-card">
+          <img src="${esc(relImg(br.logo || 'assets/images/logo.png'))}" alt="${esc(br.name)}" width="46" height="46">
+          <div class="overflow-hidden">
+            <div class="fw-bold small text-truncate">${esc(br.name)}</div>
+            <div class="text-muted" style="font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${esc(br.description)}</div>
+          </div>
+        </a>
+      </div>`).join('');
+
+    // Category-Wise Sliders (top 4 main categories with products)
+    const slidersWrap = document.getElementById('categorySlidersWrap');
+    slidersWrap.innerHTML = mainCats.slice(0, 4).map(cat => {
+      const prods = data.products.filter(p => Number(p.category_id) === Number(cat.id) || Number(p.category_parent_id) === Number(cat.id)).slice(0, 6);
+      if (!prods.length) return '';
+      const sid = 'catSlider_' + cat.id;
+      return `
+        <section class="mb-5">
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <div class="d-flex align-items-center gap-3 csbd-section-head">
+              <span class="badge bg-danger rounded-circle d-inline-flex align-items-center justify-content-center shadow-sm" style="width:42px;height:42px;"><i class="fa-solid ${esc(cat.icon)} fs-6"></i></span>
+              <div>
+                <h4 class="fw-bold mb-0">${esc(cat.name)}</h4>
+                <small class="text-muted">সর্বাধিক জনপ্রিয় কেক — স্লাইড করে দেখুন</small>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <button type="button" class="slider-nav-btn" onclick="slideCategory('${sid}', -1)" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+              <button type="button" class="slider-nav-btn" onclick="slideCategory('${sid}', 1)" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+              <button type="button" class="btn btn-sm btn-danger rounded-pill fw-bold px-3" onclick="filterByCat(${cat.id})">সব দেখুন</button>
+            </div>
+          </div>
+          <div class="category-slider-track" id="${sid}">
+            ${prods.map(cp => `<div class="slider-slide-item">${cakeCardHTML(cp)}</div>`).join('')}
+          </div>
+        </section>`;
+    }).join('');
+
+    applyCatalogFilter();
+  })
+  .catch(() => {
+    document.getElementById('catalogGrid').innerHTML = '<div class="col-12 text-center py-5 text-danger fw-bold">ডাটা লোড করতে সমস্যা হয়েছে। পেজটি রিলোড করুন।</div>';
+  });
+</script>
+</body>
+</html>
