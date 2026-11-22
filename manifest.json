@@ -1,0 +1,24 @@
+{
+  "name": "Cake Shop BD — প্রিমিয়াম কেক শপ",
+  "short_name": "Cake Shop BD",
+  "description": "সকল প্রকার বার্থডে, ওয়েডিং, চকলেট, ফন্ড্যান্ট ও বেন্টো কেক অর্ডার করুন অনলাইনে।",
+  "start_url": "./index.php",
+  "display": "standalone",
+  "background_color": "#fff1f2",
+  "theme_color": "#be123c",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
